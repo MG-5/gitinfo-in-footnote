@@ -1,0 +1,65 @@
+\documentclass[10pt,parskip=half]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{helvet}
+\renewcommand*{\familydefault}{\sfdefault}
+\usepackage[margin=2cm]{geometry}
+\usepackage{eurosym}
+\usepackage[shortlabels]{enumitem}
+\usepackage{csquotes}
+\usepackage[babel=true]{microtype}
+\usepackage{setspace}
+\usepackage{amssymb}
+
+% ToDo-Notes: Parameter "disable" versteckt alle Notizen.
+\usepackage[colorinlistoftodos]{todonotes}
+\newcommand{\litnote}[1]{\todo[inline,color=blue!40]{#1}}
+\newcommand{\refnote}[1]{\todo[color=blue!40]{#1}}
+\newcommand{\note}[1]{\todo[inline,color=green!40]{#1}}
+
+% will be overriden by GitHub workflow at building PDFs
+\def\gitTag{vMajor.Minor.Patch}
+\def\gitHash{-}
+\InputIfFileExists{gitinfo.tex}{}{}
+
+\usepackage[headsepline]{scrlayer-scrpage}
+\renewcommand{\headfont}{\sffamily}
+\renewcommand{\footfont}{\sffamily \fontsize{9}{8}\selectfont}
+\setlength{\headheight}{58pt} % logo height
+\setlength{\footheight}{58pt} % logo height
+\clearpairofpagestyles
+\ihead{%
+	\unitlength1mm
+	\begin{picture}(0,0)
+	\end{picture}
+}
+\setlength{\footheight}{10em}
+\cfoot{%
+	\rule{\textwidth}{0.5pt}\vspace{5pt}
+	\begin{tabular}{rl}
+		Vorsitzende   &  Foo\\
+		&  Bar\\
+		Kassenwart    &  Le%
+	\end{tabular}%
+	\hspace{1cm}%
+	\begin{tabular}{rl}
+		IBAN&  DE00000000000000\\
+		BIC&   0000\\
+		&     FooBank%
+	\end{tabular}%
+	\hspace{1cm}%
+	\begin{tabular}{l}
+		Amtsgericht FooTown\\
+		VR\ 0000\\
+		\ %
+	\end{tabular}%
+	\vfill
+	\hfill \scriptsize PDF-Revision: \gitTag (\gitHash)
+}
+
+\begin{document}
+	Foo
+
+\end{document}

@@ -1,0 +1,34 @@
+---
+name: Compile LaTeX files to PDF
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: []
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code.
+      uses: actions/checkout@v4
+
+    - name: Get Git info
+      run: |
+        echo "\\def\\gitHash{`git rev-parse --short HEAD`}" > gitinfo.tex
+        echo "\\def\\gitTag{`git describe --tags --abbrev=0 || echo 'no-tag'`}" >> gitinfo.tex
+
+    - name: Build PDFs.
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: |
+          t.tex
+
+    - name: Upload PDFs.
+      uses: actions/upload-artifact@v4
+      with:
+        name: PDFs
+        path: "*.pdf"
+        retention-days: 5
+        if-no-files-found: error
