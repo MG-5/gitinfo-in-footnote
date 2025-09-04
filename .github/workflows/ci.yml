@@ -3,7 +3,7 @@ name: Compile LaTeX files to PDF
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches: []
 
@@ -23,7 +23,7 @@ jobs:
       uses: xu-cheng/latex-action@v3
       with:
         root_file: |
-          t.tex
+          test.tex
 
     - name: Upload PDFs.
       uses: actions/upload-artifact@v4
